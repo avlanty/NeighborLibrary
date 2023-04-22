@@ -25,8 +25,8 @@ public class Books {
         this.checkedOutTo = name;
     }
 
-    public int getId() {
-        return id;
+    public String getId() {
+        return title + " ID: " + id + ".";
     }
 
     public void setId(int id) {
@@ -61,7 +61,11 @@ public class Books {
     }
 
     public String getCheckedOutTo() {
-        return "This book is currently checked out.";
+        if(checkedOutTo.isEmpty()){
+            return title + " is currently available. Would you like to check out?";
+        }else{
+            return "Sorry, " + title + " is not available. It is checked out to " + checkedOutTo + ".";
+        }
     }
 
     public void setCheckedOutTo(String checkedOutTo) {
@@ -72,7 +76,9 @@ public class Books {
         return checkIn;
     }
 
-    public void setCheckIn(boolean checkIn) {
-        this.checkIn = checkIn;
+    public void checkIn() {
+        System.out.println(checkedOutTo + " has checked in " + title + ".");
+        checkedOutTo = "";
+        isCheckedOut = false;
     }
 }
